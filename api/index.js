@@ -5,6 +5,7 @@ let isConnected = false;
 
 async function connectDB() {
   if (isConnected) return;
+  console.log(process.env.DATABASE);
 
   await mongoose.connect(process.env.DATABASE);
   isConnected = true;
