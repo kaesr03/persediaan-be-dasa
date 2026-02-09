@@ -31,6 +31,18 @@ export const getAllSuppliers = async (req, res) => {
   });
 };
 
+export const getSupplierOptions = async (req, res, next) => {
+  const suppliers = await Supplier.find({ user: req.user._id })
+    .select('_id name')
+    .sort({ name: 1 });
+
+  res.status(200).json({
+    status: 'success',
+    results: suppliers.length,
+    data: suppliers,
+  });
+};
+
 export const createSupplier = async (req, res) => {
   const supplier = new Supplier(req.body);
   supplier.user = req.user._id;
