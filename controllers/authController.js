@@ -58,7 +58,15 @@ export const signup = async (req, res) => {
     passwordChangedAt,
   });
 
-  createSendToken(newUser, 201, res);
+  newUser.password = undefined;
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Silahkan lakukan login dengan akun baru anda!',
+    data: {
+      newUser,
+    },
+  });
 };
 
 export const login = async (req, res, next) => {
