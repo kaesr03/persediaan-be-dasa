@@ -158,8 +158,10 @@ export const forgotPassword = async (req, res, next) => {
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
 
+    console.log(err);
+
     return next(
-      new AppError('There was an error sending the email. Try again later!'),
+      new AppError('Terjadi kesalahan saat mengirim email. Coba lagi nanti!'),
       500
     );
   }
