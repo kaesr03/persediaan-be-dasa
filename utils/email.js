@@ -37,15 +37,52 @@ class Email {
   }
 
   async send(template, subject) {
-    const templatePath = path.join(process.cwd(), 'views', `${template}.pug`);
-    console.log(templatePath);
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>${subject}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
 
-    // const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
-    const html = pug.renderFile(templatePath, {
-      firstName: this.firstName,
-      url: this.url,
-      subject,
-    });
+  <p>Hi ${this.firstName},</p>
+
+  <p>
+    Kami menerima permintaan anda untuk lupa password,
+    klik tombol berikut untuk me-reset password anda:
+  </p>
+
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td align="left">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td style="background-color: #007bff; padding: 10px 18px; border-radius: 4px;">
+                  <a href="${this.url}"
+                     target="_blank"
+                     style="color: #ffffff; text-decoration: none; font-weight: bold;">
+                    Reset Password Anda
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Jika anda tidak melakukan lupa password,
+    tolong abaikan email ini!
+  </p>
+
+</body>
+</html>
+`;
 
     const mailOptions = {
       from: this.from,
@@ -66,7 +103,7 @@ class Email {
 
   async sendPasswordReset() {
     await this.send(
-      'passwordreset',
+      'passwordReset',
       'Link token lupa password anda (valid hanya 10 menit)'
     );
   }
