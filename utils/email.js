@@ -37,7 +37,7 @@ class Email {
   }
 
   async send(template, subject) {
-    const templatePath = path.join(process.cwd(), 'views', 'passwordreset.pug');
+    const templatePath = path.join(process.cwd(), 'views', `${template}.pug`);
 
     // const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
     const html = pug.renderFile(templatePath, {
