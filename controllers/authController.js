@@ -23,6 +23,7 @@ const createSendToken = (user, statusCode, res) => {
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
+    path: '/',
   };
 
   // const cookieOptions = {
@@ -88,7 +89,7 @@ export const login = async (req, res, next) => {
 export const logout = (req, res) => {
   res.clearCookie('jwtInventory', {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     secure: process.env.NODE_ENV === 'production',
     path: '/',
   });
