@@ -7,6 +7,8 @@ import path from 'node:path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const templatePath = path.join(process.cwd(), 'views', 'passwordreset.pug');
+
 class Email {
   constructor(user, url) {
     this.to = user.email;
@@ -37,7 +39,8 @@ class Email {
   }
 
   async send(template, subject) {
-    const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
+    // const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
+    const html = pug.renderFile(templatePath, {
       firstName: this.firstName,
       url: this.url,
       subject,
