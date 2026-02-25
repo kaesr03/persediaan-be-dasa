@@ -2,12 +2,10 @@ import nodemailer from 'nodemailer';
 import pug from 'pug';
 import { convert } from 'html-to-text';
 
-import { fileURLToPath } from 'node:url';
+// import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const templatePath = path.join(process.cwd(), 'views', 'passwordreset.pug');
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 class Email {
   constructor(user, url) {
@@ -39,6 +37,8 @@ class Email {
   }
 
   async send(template, subject) {
+    const templatePath = path.join(process.cwd(), 'views', 'passwordreset.pug');
+
     // const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
     const html = pug.renderFile(templatePath, {
       firstName: this.firstName,
