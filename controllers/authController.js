@@ -127,7 +127,7 @@ export const protect = async (req, res, next) => {
   if (currentUser.changePasswordAfter(decoded.iat)) {
     return next(
       new AppError(
-        'User recently changed the password. Please login again',
+        'Pengguna baru saja mengubah password. Tolong login ulang',
         401
       )
     );
