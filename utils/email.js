@@ -49,7 +49,7 @@ class Email {
   <p>Hi ${this.firstName},</p>
 
   <p>
-    Kami menerima permintaan anda untuk lupa password,
+    Kami menerima permintaan anda untuk lupa password, buka link berikut ${this.url},  atau
     klik tombol berikut untuk me-reset password anda:
   </p>
 
