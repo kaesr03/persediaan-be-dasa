@@ -149,7 +149,7 @@ export const forgotPassword = async (req, res, next) => {
 
   try {
     const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
-    console.log(resetURL);
+    // console.log(resetURL);
     await new Email(user, resetURL).sendPasswordReset();
     res.status(200).json({
       status: 'success',
