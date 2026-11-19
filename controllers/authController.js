@@ -141,7 +141,7 @@ export const protect = async (req, res, next) => {
 export const forgotPassword = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return next(new AppError('Tidak ada pengguna dengan email tersebut!'), 404);
+    return next(new AppError('Tidak ada pengguna dengan email tersebut!', 404));
   }
   const resetToken = user.createPasswordResetToken();
 
